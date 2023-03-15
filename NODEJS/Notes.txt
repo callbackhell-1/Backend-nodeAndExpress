@@ -1,0 +1,6 @@
+npm: Available offline also
+npx: Need while development(online)
+
+Module: data of 1 file in another file.
+
+
