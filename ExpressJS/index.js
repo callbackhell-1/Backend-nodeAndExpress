@@ -10,11 +10,11 @@ const dirPath = path.join(__dirname, "public");
 app.use(express.static(dirPath));
 
 app.get("/", (req, res) => {
-  res.send("Hello from Express");
+  res.sendFile(`${dirPath}/index.html`);
 });
 
 app.get("/about", (req, res) => {
-  res.send("Hello from About");
+  res.sendFile(`${dirPath}/about.html`);
 });
 
 app.get("/contact", (req, res) => {
@@ -23,10 +23,7 @@ app.get("/contact", (req, res) => {
 
 // convert object data into JSON data in Browser.
 app.get("/download", (req, res) => {
-  res.send({
-    name: "John",
-    age: 22,
-  });
+  res.download(`${dirPath}/index.html`);
 });
 
 app.listen(port, (err) => {
