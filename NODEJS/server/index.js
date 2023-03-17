@@ -12,5 +12,4 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000, () => {
   console.log("server Listening on port  no. 3000");
-  console.log(__dirname);
 });
