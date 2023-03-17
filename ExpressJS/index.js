@@ -13,8 +13,9 @@ app.set("view engine", "ejs");
 // console.log(app.get("view engine")); //ejs
 // console.log(__dirname,"views");
 
-
 app.get("/", (req, res) => {
+  res.render("index");
+
   //   res.sendFile(`${dirPath}/index.html`);
 });
 
