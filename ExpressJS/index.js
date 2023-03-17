@@ -15,6 +15,14 @@ app.get("/contact", (req, res) => {
   res.send(`<h1>Thanks for contacting us</h1>`);
 });
 
+// convert object data into JSON data in Browser.
+app.get("/download", (req, res) => {
+  res.send({
+    name: "John",
+    age: 22,
+  });
+});
+
 app.listen(port, (err) => {
   if (err) {
     console.log("Error in listener", port);
