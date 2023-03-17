@@ -11,6 +11,10 @@ app.get("/about", (req, res) => {
   res.send("Hello from About");
 });
 
+app.get("/contact", (req, res) => {
+  res.send(`<h1>Thanks for contacting us</h1>`);
+});
+
 app.listen(port, (err) => {
   if (err) {
     console.log("Error in listener", port);
