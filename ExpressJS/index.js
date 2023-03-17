@@ -1,7 +1,13 @@
 const express = require("express");
 const port = 3000;
+const path = require("path");
 
 const app = express();
+
+const dirPath = path.join(__dirname, "public");
+// console.log(dirPath);
+
+app.use(express.static(dirPath));
 
 app.get("/", (req, res) => {
   res.send("Hello from Express");
