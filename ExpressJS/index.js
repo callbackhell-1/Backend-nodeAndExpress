@@ -1,23 +1,15 @@
 const express = require("express");
 const path = require("path");
+const router = require("./router");
 const port = 3000;
 
 const app = express();
 
+// Router
+app.use(router);
+
 // Template engine
 app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "HomePage",
-  });
-});
-
-app.get("/about", (req, res) => {
-  res.render("about", {
-    title: "About from view eng",
-  });
-});
 
 app.listen(port, (err) => {
   if (err) {
