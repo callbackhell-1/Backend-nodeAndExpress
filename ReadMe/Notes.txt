@@ -1,0 +1,17 @@
+npm: Available offline also
+npx: Need while development(online)
+
+Module: data of 1 file in another file.
+
+
+/*
+app.use(express.static(dirPath));
+
+app.get("/", (req, res) => {
+  res.send("Hello from Express");
+});
+
+and if index.html is there then, server will render index.html file instead of "Hello from Express" because index.html is entry point. 
+if we change the name of file to somethingelse.html , then it will render "Hello from Express".
+
+*/
