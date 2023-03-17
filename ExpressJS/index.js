@@ -14,12 +14,17 @@ app.set("view engine", "ejs");
 // console.log(__dirname,"views");
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    title: "HomePage",
+  });
 
   //   res.sendFile(`${dirPath}/index.html`);
 });
 
 app.get("/about", (req, res) => {
+  res.render("about", {
+    title: "About from view eng",
+  });
   //   res.sendFile(`${dirPath}/about.html`);
 });
 
