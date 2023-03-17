@@ -1,39 +1,22 @@
 const express = require("express");
-const port = 3000;
 const path = require("path");
+const port = 3000;
 
 const app = express();
 
-// const dirPath = path.join(__dirname, "public");
-// console.log(dirPath);
-// app.use(express.static(dirPath));
-
 // Template engine
 app.set("view engine", "ejs");
-// console.log(app.get("view engine")); //ejs
-// console.log(__dirname,"views");
 
 app.get("/", (req, res) => {
   res.render("index", {
     title: "HomePage",
   });
-
-  //   res.sendFile(`${dirPath}/index.html`);
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About from view eng",
   });
-  //   res.sendFile(`${dirPath}/about.html`);
-});
-
-app.get("/contact", (req, res) => {
-  //   res.send(`<h1>Thanks for contacting us</h1>`);
-});
-
-app.get("/download", (req, res) => {
-  //   res.download(`${dirPath}/index.html`);
 });
 
 app.listen(port, (err) => {
