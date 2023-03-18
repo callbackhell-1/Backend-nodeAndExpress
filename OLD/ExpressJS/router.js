@@ -1,10 +1,11 @@
 const express = require("express");
+constMiddleware = require("./middleware");
 
 // Router
 const router = express.Router();
+// router.use(middleware);
 
-
-router.get("/", (req, res) => {
+router.get("/",middleware, (req, res) => {
   res.render("index", {
     title: "HomePage",
   });
