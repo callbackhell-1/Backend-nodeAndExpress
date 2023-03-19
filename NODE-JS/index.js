@@ -1,9 +1,17 @@
 const http = require("http");
 
 const server = http.createServer((req, res) => {
-  //   console.log(req.url);
-  //   res.end("Heloo from NodeJS ");
-  res.end(`<h1>Hellllooo NOde</h1>`);
+  // routing
+
+  if (req.url == "/") {
+    res.end("<h1>Welcome to Home page</h1>");
+  } else if (req.url == "/about") {
+    res.end("<h1>Welcome to About page</h1>");
+  } else if (req.url == "/contact") {
+    res.end("<h1>Welcome to contact page</h1>");
+  } else {
+    res.end("<h1>Error : 404 page</h1>");
+  }
 });
 
 // Event listener
@@ -13,11 +21,3 @@ server.listen(3000, (err) => {
   }
   console.log("Server is up & running at 3000");
 });
-
-/*
-
-/
-/about
-/about/us
-
- */
