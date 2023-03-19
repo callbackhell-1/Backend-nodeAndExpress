@@ -1,4 +1,7 @@
 const http = require("http");
+const hero = require("./feature");
+
+console.log(hero);
 
 const server = http.createServer((req, res) => {
   // routing
