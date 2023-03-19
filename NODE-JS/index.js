@@ -1,31 +1,12 @@
 import http from "http";
+import { percent } from "./feature.js";
 
-
-/*--------- Method-1---------  */
-// import hero,{ hero1, hero2 } from "./feature.js";
-// console.log(hero);
-// console.log(hero1);
-// console.log(hero2);
-
-/*--------- Method-2---------  */
-// import { hero1, hero2 } from "./feature.js";
-// console.log(hero);
-// console.log(hero1);
-// console.log(hero2);
-
-import * as myObj from "./feature.js";
-
-// console.log(myObj);
-// [Module] { default: 'Thor', hero1: 'IronMan', hero2: 'Batman' }
-
-console.log(myObj.default);
-console.log(myObj.hero1);
-console.log(myObj.hero2);
+console.log(percent);
+console.log(percent());
 
 /*
-Thor
-IronMan
-Batman
+[Function: percent]
+57
 */
 
 const server = http.createServer((req, res) => {
@@ -34,7 +15,7 @@ const server = http.createServer((req, res) => {
   if (req.url == "/") {
     res.end("<h1>Welcome to Home page</h1>");
   } else if (req.url == "/about") {
-    res.end("<h1>Welcome to About page</h1>");
+    res.end(`<h1>Welcome to About page and percent is ${percent()}</h1>`);
   } else if (req.url == "/contact") {
     res.end("<h1>Welcome to contact page</h1>");
   } else {
