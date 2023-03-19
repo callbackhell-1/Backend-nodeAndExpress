@@ -1,6 +1,7 @@
 import http from "http";
 import { percent } from "./feature.js";
 import fs from "fs";
+// Check out OS & Path module
 
 const server = http.createServer((req, res) => {
   // routing
