@@ -1,5 +1,7 @@
-const http = require("http");
-const hero = require("./feature");
+// const http = require("http");
+import http from "http";
+// const hero = require("./feature");
+import hero from "./feature.js";
 
 console.log(hero);
 
