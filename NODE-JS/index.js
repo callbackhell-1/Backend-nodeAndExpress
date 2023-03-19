@@ -1,9 +1,32 @@
-// const http = require("http");
 import http from "http";
-// const hero = require("./feature");
-import hero from "./feature.js";
 
-console.log(hero);
+
+/*--------- Method-1---------  */
+// import hero,{ hero1, hero2 } from "./feature.js";
+// console.log(hero);
+// console.log(hero1);
+// console.log(hero2);
+
+/*--------- Method-2---------  */
+// import { hero1, hero2 } from "./feature.js";
+// console.log(hero);
+// console.log(hero1);
+// console.log(hero2);
+
+import * as myObj from "./feature.js";
+
+// console.log(myObj);
+// [Module] { default: 'Thor', hero1: 'IronMan', hero2: 'Batman' }
+
+console.log(myObj.default);
+console.log(myObj.hero1);
+console.log(myObj.hero2);
+
+/*
+Thor
+IronMan
+Batman
+*/
 
 const server = http.createServer((req, res) => {
   // routing
