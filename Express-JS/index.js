@@ -18,4 +18,4 @@ app.listen(3000, () => {
 
 // npm run dev
 
-// 1:04:40
+// Path.resolve() == __dirname("location")
