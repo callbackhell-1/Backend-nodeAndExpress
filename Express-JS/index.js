@@ -1,16 +1,21 @@
 import express from "express";
+import path from "path";
 
 const app = express();
+
+// Static - handler
+app.use(express.static(path.join(path.resolve(), "public")));
+
+console.log(path.join(path.resolve(), "public"));
+/* C:\Users\Epitome\Desktop\Backend-nodeAndExpress\Express-JS\public
+ */
 
 // setting up view engine
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("index", {
-    name: "John",
-    city: "LA",
-    country: "Ind",
-  });
+  // res.sendFile("index");
+  res.render("index");
 });
 
 app.listen(3000, () => {
@@ -20,11 +25,11 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- Local means whole object :{name: "John",city: "LA",country: "Ind"}
+-- 
 
--- If we use local.name , result will be same
+-- 
 
---  We use render for dynamic data
+--  
 
 --
 
