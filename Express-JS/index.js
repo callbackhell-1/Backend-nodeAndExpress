@@ -3,19 +3,19 @@ import path from "path";
 
 const app = express();
 
-// Static - handler
+// Middlewares
 app.use(express.static(path.join(path.resolve(), "public")));
-
-console.log(path.join(path.resolve(), "public"));
-/* C:\Users\Epitome\Desktop\Backend-nodeAndExpress\Express-JS\public
- */
+app.use(express.urlencoded({ extended: true }));
 
 // setting up view engine
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  // res.sendFile("index");
   res.render("index");
+});
+
+app.post("/", (req, res) => {
+  console.log(req.body);
 });
 
 app.listen(3000, () => {
@@ -25,9 +25,10 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- 
+-- First it will check in public folder , if idex.html is ther then it will render that only , if not then it will go to index.ejs
 
--- 
+-- To get form data we have to use middle ware (app.use(express.urlencoded({ extended: true }));
+)
 
 --  
 
