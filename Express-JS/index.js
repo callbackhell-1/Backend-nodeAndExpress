@@ -38,17 +38,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/add", (req, res) => {
-  Message.create({
-    name: "Dummy",
-    email: "sample@eemail.com",
-  })
-    .then(() => {
-      res.send("Data created !");
-    })
-    .catch((e) => {
-      res.send("Error :", e);
-    });
+app.get("/add", async (req, res) => {
+  await Message.create({
+    name: "Dummy2",
+    email: "sample2@eemail.com",
+  });
+  res.send("Data created !");
 });
 
 app.get("/success", (req, res) => {
