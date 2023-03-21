@@ -31,9 +31,24 @@ app.use(express.urlencoded({ extended: true }));
 
 // setting up view engine
 app.set("view engine", "ejs");
-
+/*
 app.get("/", (req, res) => {
   res.render("index");
+});
+*/
+
+// Rendering Login Page
+app.get("/", (req, res) => {
+  res.render("login");
+});
+
+app.post("/login", (req, res) => {
+  // cookie set
+  res.cookie("token", "iamin", {
+    httpOnly: true,
+    expires: new Date(Date.now() + 60 * 1000),
+  });
+  res.redirect("/");
 });
 
 app.get("/add", async (req, res) => {
