@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import mongoose from "mongoose";
 
+// DB connection
 mongoose
   .connect("mongodb://localhost:27017", {
     dbName: "backend",
@@ -12,6 +13,13 @@ mongoose
   .catch((error) => {
     console.log("Not Connected to db", error);
   });
+
+// Schema creation
+const messageSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+});
+
 const app = express();
 
 const users = [];
