@@ -25,8 +25,6 @@ const Message = mongoose.model("Messages", messageSchema);
 
 const app = express();
 
-const users = [];
-
 // Middlewares
 app.use(express.static(path.join(path.resolve(), "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -50,12 +48,21 @@ app.get("/success", (req, res) => {
   res.render("success");
 });
 
-app.post("/contact", (req, res) => {
-  console.log(req.body);
-  users.push({
+app.post("/contact", async (req, res) => {
+  {
+    /* const hmaraData = {
+     name: req.body.name,
+     email: req.body.email,
+   };
+   console.log(hmaraData); // send hmaraData to create(hmaraData) or below method :
+  */
+  }
+
+  await Message.create({
     name: req.body.name,
     email: req.body.email,
   });
+
   res.redirect("/success"); // /success is route, not the file
 });
 
