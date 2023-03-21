@@ -20,6 +20,9 @@ const messageSchema = new mongoose.Schema({
   email: String,
 });
 
+// Model/collection creation
+const Message = mongoose.model("Message", messageSchema);
+
 const app = express();
 
 const users = [];
