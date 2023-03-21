@@ -29,7 +29,6 @@ app.post("/contact", (req, res) => {
   res.redirect("/success"); // /success is route, not the file
 });
 
-// seeing users from array by sending res as json
 app.get("/users", (req, res) => {
   res.json({
     users, //users is an array
@@ -43,12 +42,11 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- First it will check in public folder , if idex.html is ther then it will render that only , if not then it will go to index.ejs
+-- 
 
--- To get form data we have to use middle ware (app.use(express.urlencoded({ extended: true }));
-)
+-- 
 
---  render(""):no need of url , redirect need of url (which is route)
+--  
 
 --
 
