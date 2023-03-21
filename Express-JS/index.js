@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
 // DB connection
 mongoose
@@ -28,6 +29,7 @@ const app = express();
 // Middlewares
 app.use(express.static(path.join(path.resolve(), "public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // setting up view engine
 app.set("view engine", "ejs");
@@ -39,6 +41,8 @@ app.get("/", (req, res) => {
 
 // Rendering Login Page
 app.get("/", (req, res) => {
+  console.log(req.cookies);
+
   res.render("login");
 });
 
