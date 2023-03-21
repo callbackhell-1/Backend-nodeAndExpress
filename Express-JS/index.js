@@ -21,7 +21,7 @@ const messageSchema = new mongoose.Schema({
 });
 
 // Model/collection creation
-const Message = mongoose.model("Message", messageSchema);
+const Message = mongoose.model("Messages", messageSchema);
 
 const app = express();
 
@@ -36,6 +36,19 @@ app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/add", (req, res) => {
+  Message.create({
+    name: "Dummy",
+    email: "sample@eemail.com",
+  })
+    .then(() => {
+      res.send("Data created !");
+    })
+    .catch((e) => {
+      res.send("Error :", e);
+    });
 });
 
 app.get("/success", (req, res) => {
