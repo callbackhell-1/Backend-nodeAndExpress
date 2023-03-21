@@ -1,6 +1,17 @@
 import express from "express";
 import path from "path";
+import mongoose from "mongoose";
 
+mongoose
+  .connect("mongodb://localhost:27017", {
+    dbName: "backend",
+  })
+  .then(() => {
+    console.log("Connected to db");
+  })
+  .catch((error) => {
+    console.log("Not Connected to db", error);
+  });
 const app = express();
 
 const users = [];
