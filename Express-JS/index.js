@@ -65,6 +65,17 @@ app.post("/login", (req, res) => {
   res.redirect("/");
 });
 
+// Logout
+app.get("/logout", (req, res) => {
+  // cookie set
+  res.cookie("token", null, {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+  res.redirect("/");
+});
+
+
 app.get("/add", async (req, res) => {
   await Message.create({
     name: "Dummy2",
