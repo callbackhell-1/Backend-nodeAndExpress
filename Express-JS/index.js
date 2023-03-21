@@ -41,9 +41,19 @@ app.get("/", (req, res) => {
 
 // Rendering Login Page
 app.get("/", (req, res) => {
-  console.log(req.cookies);
+  console.log(req.cookies); //{ token: 'iamin' }
 
-  res.render("login");
+  // const token = req.cookie.token
+  //destructuring the same as
+
+  const { token } = req.cookies;
+  console.log(token); //{ token: 'iamin' }
+
+  if (token) {
+    res.render("logout");
+  } else {
+    res.render("login");
+  }
 });
 
 app.post("/login", (req, res) => {
