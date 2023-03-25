@@ -41,28 +41,22 @@ const isAuthenticated = async (req, res, next) => {
   if (token) {
     // decoding jwt token
     const decoded = jwt.verify(token, "iamsecretkey");
-    console.log(decoded); // o/p: { _id: '641f3d9356742afb957697ca', iat: 1679768979 }, id is same as user id in db
 
-    // saving users information in req.user
+    // saving users information in (req.user)
     req.user = await User.findById(decoded._id);
-    console.log("From Auth...", req.user); // it will log every info of user
     next();
   } else {
     res.render("login");
   }
 };
 
-// Rendering Login Page or Home/root page
 app.get("/", isAuthenticated, (req, res) => {
-  // passing dynamic name 
-  res.render("logout",{
-    name :req.user.name,
+  res.render("logout", {
+    name: req.user.name,
   });
-  console.log("from mw...", req.user);
 });
 
 app.post("/login", async (req, res) => {
-  console.log(req.body);
   const { name, email, password } = req.body;
 
   //create new user
@@ -74,8 +68,6 @@ app.post("/login", async (req, res) => {
 
   // creating token from jwt
   const token = jwt.sign({ _id: userId._id }, "iamsecretkey");
-
-  console.log(token);
 
   // cookie set
   res.cookie("token", token, {
@@ -102,18 +94,8 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- if we decoke token from jwt.io , we will get same id , which is there in DB.
--- From Auth... {
-  _id: new ObjectId("641f3f082c0688bb720eb8e5"),
-  name: 'John',
-  email: 'Johnwick@email.com',
-  __v: 0
-}
-from mw... {
-  _id: new ObjectId("641f3f082c0688bb720eb8e5"),
-  name: 'John',
-  email: 'Johnwick@email.com',
-  __v: 0
+-- 
+--
 --  
 
 --
