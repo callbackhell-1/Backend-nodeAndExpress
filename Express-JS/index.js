@@ -45,18 +45,14 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-/*
-app.get("/", (req, res) => {
-  res.render("index");
-});
-*/
-
 // Rendering Login Page or Home/root page
 app.get("/", isAuthenticated, (req, res) => {
   res.render("logout");
 });
 
 app.post("/login", (req, res) => {
+  console.log(req.body);
+
   // cookie set
   res.cookie("token", "iamin", {
     httpOnly: true,
@@ -73,42 +69,6 @@ app.get("/logout", (req, res) => {
     expires: new Date(Date.now()),
   });
   res.redirect("/");
-});
-
-app.get("/add", async (req, res) => {
-  await Message.create({
-    name: "Dummy2",
-    email: "sample2@eemail.com",
-  });
-  res.send("Data created !");
-});
-
-app.get("/success", (req, res) => {
-  res.render("success");
-});
-
-app.post("/contact", async (req, res) => {
-  {
-    /* const hmaraData = {
-     name: req.body.name,
-     email: req.body.email,
-   };
-   console.log(hmaraData); // send hmaraData to create(hmaraData) or below method :
-  */
-  }
-
-  await Message.create({
-    name: req.body.name,
-    email: req.body.email,
-  });
-
-  res.redirect("/success"); // /success is route, not the file
-});
-
-app.get("/users", (req, res) => {
-  res.json({
-    users, //users is an array
-  });
 });
 
 app.listen(3000, () => {
