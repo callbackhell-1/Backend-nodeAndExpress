@@ -62,8 +62,15 @@ app.post("/login", async (req, res) => {
     password,
   });
 
+  // creating token from jwt
+  const token = jwt.sign({ _id: userId._id }, "iamsecretkey");
+
+  console.log(token);
+  /* o/p :
+ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFmM2EzMjM0NzYxMGNhYzRhYTExZTAiLCJpYXQiOjE2Nzk3NjgxMTR9.UVcivd4AAZvep0CPL5pHvIBN1Gc-CgXDpxGkny9uzV4
+  */
   // cookie set : As user id , when we create user we get userId in db
-  res.cookie("token", userId._id, {
+  res.cookie("token", token, {
     httpOnly: true,
     expires: new Date(Date.now() + 60 * 1000),
   });
@@ -87,7 +94,7 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- Here we are passing cookie as user._id(which is there in db while creating user).But when we check on browser we can see that there cookie value is same as user._id .so for that we will use JWT ( in next commit)
+-- if we decoke token from jwt.io , we will get same id , which is there in DB.
 -- 
 --  
 
