@@ -20,6 +20,7 @@ mongoose
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
+  password: String,
 });
 
 // Model/collection creation
@@ -60,16 +61,21 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.post("/login", async (req, res) => {
-  const { name, email, password } = req.body;
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 
-  // check whether user already exist or not
-  const user = await User.findOne({ email }); //finding one user using email
-  // if user not exist
-  if (!user) {
-    return res.redirect("/register");
+app.post("/register", async (req, res) => {
+  const { name, email, password } = req.body;
+  console.log(req.body);
+  const user = await User.findOne({ email });
+
+  // if user exist
+  if (user) {
+    return res.redirect("/login");
   }
 
+  // If user not exist
   //create new user
   const userId = await User.create({
     name,
