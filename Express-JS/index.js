@@ -50,11 +50,19 @@ app.get("/", isAuthenticated, (req, res) => {
   res.render("logout");
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   console.log(req.body);
+  const { name, email, password } = req.body;
 
-  // cookie set
-  res.cookie("token", "iamin", {
+  //create new user
+  const userId = await User.create({
+    name,
+    email,
+    password,
+  });
+
+  // cookie set : As user id , when we create user we get userId in db
+  res.cookie("token", userId._id, {
     httpOnly: true,
     expires: new Date(Date.now() + 60 * 1000),
   });
@@ -78,7 +86,7 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- 
+-- Here we are passing cookie as user._id(which is there in db while creating user).But when we check on browser we can see that there cookie value is same as user._id .so for that we will use JWT ( in next commit)
 -- 
 --  
 
