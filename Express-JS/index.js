@@ -56,8 +56,19 @@ app.get("/", isAuthenticated, (req, res) => {
   });
 });
 
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
 app.post("/login", async (req, res) => {
   const { name, email, password } = req.body;
+
+  // check whether user already exist or not
+  const user = await User.findOne({ email }); //finding one user using email
+  // if user not exist
+  if (!user) {
+    return res.redirect("/register");
+  }
 
   //create new user
   const userId = await User.create({
@@ -94,7 +105,7 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- 
+-- 2:33:35
 --
 --  
 
