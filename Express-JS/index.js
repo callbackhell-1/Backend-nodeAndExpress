@@ -33,6 +33,18 @@ app.use(cookieParser());
 
 // setting up view engine
 app.set("view engine", "ejs");
+
+// Middle ware
+const isAuthenticated = (req, res, next) => {
+  const { token } = req.cookies;
+  if (token) {
+    // res.render(logout);
+    next();
+  } else {
+    res.render("login");
+  }
+};
+
 /*
 app.get("/", (req, res) => {
   res.render("index");
@@ -40,20 +52,8 @@ app.get("/", (req, res) => {
 */
 
 // Rendering Login Page or Home/root page
-app.get("/", (req, res) => {
-  console.log(req.cookies); //{ token: 'iamin' }
-
-  // const token = req.cookie.token
-  //destructuring the same as
-
-  const { token } = req.cookies;
-  console.log(token); //{ token: 'iamin' }
-
-  if (token) {
-    res.render("logout");
-  } else {
-    res.render("login");
-  }
+app.get("/", isAuthenticated, (req, res) => {
+  res.render("logout");
 });
 
 app.post("/login", (req, res) => {
