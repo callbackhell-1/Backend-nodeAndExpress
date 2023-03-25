@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 });
 */
 
-// Rendering Login Page
+// Rendering Login Page or Home/root page
 app.get("/", (req, res) => {
   console.log(req.cookies); //{ token: 'iamin' }
 
@@ -74,7 +74,6 @@ app.get("/logout", (req, res) => {
   });
   res.redirect("/");
 });
-
 
 app.get("/add", async (req, res) => {
   await Message.create({
@@ -119,26 +118,8 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- app.post("/contact", async (req, res) => {
-  
-Method 1: 
-  await Message.create({name : req.body.name ,email :req.body.email});
-
-Method 2:
-    const hmaraData = {
-     name: req.body.name,
-     email: req.body.email,
-   };
-  await Message.create(hmaraData);
-
-Method 3:
-  const { name, email} = req.body;
-    await Message.create({name ,email});
-    
-
--- If key value pair is same then no need to pass like
-{name : name ,email : email}
-Just pass {name ,email}
+-- 
+-- 
 --  
 
 --
