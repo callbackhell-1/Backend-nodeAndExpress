@@ -36,10 +36,16 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 // Middle ware
-const isAuthenticated = (req, res, next) => {
+const isAuthenticated = async (req, res, next) => {
   const { token } = req.cookies;
   if (token) {
-    // res.render(logout);
+    // decoding jwt token
+    const decoded = jwt.verify(token, "iamsecretkey");
+    console.log(decoded); // o/p: { _id: '641f3d9356742afb957697ca', iat: 1679768979 }, id is same as user id in db
+
+    // saving users information in req.user
+    req.user = await User.findById(decoded._id);
+    console.log("From Auth...", req.user); // it will log every info of user
     next();
   } else {
     res.render("login");
@@ -49,6 +55,7 @@ const isAuthenticated = (req, res, next) => {
 // Rendering Login Page or Home/root page
 app.get("/", isAuthenticated, (req, res) => {
   res.render("logout");
+  console.log("from mw...", req.user);
 });
 
 app.post("/login", async (req, res) => {
@@ -66,10 +73,8 @@ app.post("/login", async (req, res) => {
   const token = jwt.sign({ _id: userId._id }, "iamsecretkey");
 
   console.log(token);
-  /* o/p :
- eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFmM2EzMjM0NzYxMGNhYzRhYTExZTAiLCJpYXQiOjE2Nzk3NjgxMTR9.UVcivd4AAZvep0CPL5pHvIBN1Gc-CgXDpxGkny9uzV4
-  */
-  // cookie set : As user id , when we create user we get userId in db
+
+  // cookie set
   res.cookie("token", token, {
     httpOnly: true,
     expires: new Date(Date.now() + 60 * 1000),
@@ -95,7 +100,17 @@ app.listen(3000, () => {
 
 /* 
 -- if we decoke token from jwt.io , we will get same id , which is there in DB.
--- 
+-- From Auth... {
+  _id: new ObjectId("641f3f082c0688bb720eb8e5"),
+  name: 'John',
+  email: 'Johnwick@email.com',
+  __v: 0
+}
+from mw... {
+  _id: new ObjectId("641f3f082c0688bb720eb8e5"),
+  name: 'John',
+  email: 'Johnwick@email.com',
+  __v: 0
 --  
 
 --
