@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
 
 // DB connection
 mongoose
