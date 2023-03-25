@@ -16,13 +16,13 @@ mongoose
   });
 
 // Schema creation
-const messageSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: String,
   email: String,
 });
 
 // Model/collection creation
-const Message = mongoose.model("Messages", messageSchema);
+const User = mongoose.model("User", userSchema);
 
 const app = express();
 
