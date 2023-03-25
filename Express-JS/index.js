@@ -54,7 +54,10 @@ const isAuthenticated = async (req, res, next) => {
 
 // Rendering Login Page or Home/root page
 app.get("/", isAuthenticated, (req, res) => {
-  res.render("logout");
+  // passing dynamic name 
+  res.render("logout",{
+    name :req.user.name,
+  });
   console.log("from mw...", req.user);
 });
 
