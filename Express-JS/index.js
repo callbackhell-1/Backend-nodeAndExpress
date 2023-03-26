@@ -78,17 +78,7 @@ app.post("/login", async (req, res) => {
   }
 
   // if user found- chk password same or not
-  /* MY approach 
-  else if (user) {
-    user.password == req.body.password;
-    res.send("hola ");
-  }
-  */
-
   const isMatch = user.password == req.body.password;
-  console.log(password);
-  console.log(user.password);
-  console.log(email);
 
   if (!isMatch) {
     return res.render("login", { email, message: "Incorrect Password" });
@@ -115,12 +105,16 @@ app.post("/register", async (req, res) => {
     return res.redirect("/login");
   }
 
+  // Encrypt paassword
+  const hashedPassword = await bcrypt.hash(password, 10);
+  console.log(hashedPassword);
+
   // If user not exist
   //create new user
   const userId = await User.create({
     name,
     email,
-    password,
+    password: hashedPassword,
   });
 
   // creating token from jwt
