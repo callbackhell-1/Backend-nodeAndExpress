@@ -38,8 +38,22 @@ app.get("/users/all", async (req, res) => {
 
   res.json({
     success: true,
-    // users: users, or
-    users, //if key value same then pass only one
+    users,
+  });
+});
+
+// create new user
+app.post("/users/new", async (req, res) => {
+  // user create
+  await User.create({
+    name: "Wick",
+    email: "email@email.com",
+    password: "1",
+  });
+  // sending response
+  res.json({
+    success: true,
+    message: "Registered",
   });
 });
 
