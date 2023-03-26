@@ -55,7 +55,7 @@ app.post("/users/new", async (req, res) => {
     password,
   });
   // sending response
-  res.json({
+  res.status(201).json({
     success: true,
     message: "Registered",
   });
