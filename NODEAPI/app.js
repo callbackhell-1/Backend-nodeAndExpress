@@ -39,20 +39,6 @@ app.get("/users/all", async (req, res) => {
   // find all user from db
   const users = await User.find({});
 
-  /*----query param------*/
-  //1.  our url : localhost:3000/users/all/?city=Newyork
-  console.log(req.query);
-  // op: { city: 'Newyork' }
-
-  //2. our url: localhost:3000/users/all/?city=Newyork&country=US&continet=NA
-  console.log(req.query);
-  // o/p: { city: 'Newyork', country: 'US', continet: 'NA' }
-
-  // 3. use case
-  const country = req.query.country;
-  console.log(country);
-  // o/p: US
-
   res.json({
     success: true,
     users,
@@ -75,6 +61,35 @@ app.post("/users/new", async (req, res) => {
   });
 });
 
+app.get("/userid", async (req, res) => {
+  const { id } = req.body;
+  const user = await User.findById(id);
+
+  res.json({
+    success: true,
+    user,
+  });
+});
+
+/**
+//  1. using post method
+ *If we send get req at url localhost:3000/userid
+
+ and pass id as {
+    "id":"642068d6479bbab3172c3b64"
+}
+
+then we get infor of user with that pparticular id
+
+//2. USing query param
+-> we can use this as query param also by: 
+localhost:3000/userid?id=642068d6479bbab3172c3b64
+ 
+const id =req.query.id;
+then we can use find the info of user using this id.
+
+
+*/
 app.listen(port, (err) => {
   if (err) {
     return console.log(`Error in running server ${err}`);
