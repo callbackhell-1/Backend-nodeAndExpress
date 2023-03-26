@@ -28,6 +28,9 @@ const schema = new mongoose.Schema({
 // Model/collection creation
 const User = mongoose.model("User", schema);
 
+// using Middleware
+app.use(express.json()); // as we are sending JSON so we use this
+
 app.get("/", (req, res) => {
   res.send("<h1>Hi I'm Groot</h1>");
 });
@@ -44,11 +47,12 @@ app.get("/users/all", async (req, res) => {
 
 // create new user
 app.post("/users/new", async (req, res) => {
+  const { name, email, password } = req.body;
   // user create
   await User.create({
-    name: "Wick",
-    email: "email@email.com",
-    password: "1",
+    name,
+    email,
+    password,
   });
   // sending response
   res.json({
