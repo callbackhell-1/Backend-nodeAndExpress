@@ -61,47 +61,31 @@ app.post("/users/new", async (req, res) => {
   });
 });
 
-// param
-// /userid/node : here node is dynamic url
-// /userid/react here react is dynamic url
-
-app.get("/userid/:someRandom", async (req, res) => {
-  // const { id } = req.params;
-  // const user = await User.findById(id);
-  // console.log(id);
-  console.log(req.params);
-  /*
-  // Example 1: 
-  route: app.get("/userid/:id" ... 
-i have sent end point as : 
--> localhost:3000/userid/node
-  -> console.log(req.params);
-   -> { id: 'node' }
- 
-// Example 2 :
- route: app.get("/userid/:someRandom" ...
- i have sent end point as : 
--> localhost:3000/userid/node
-  -> console.log(req.params);
-    ->{ someRandom: 'node' }
-*/
+app.get("/userid/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
   res.json({
     success: true,
-    user: {},
+    user,
   });
 });
 
 /**
--> we pass endpoint as :
-localhost:3000/userid?id=642068d6479bbab3172c3b64
-
-we get response as :
-{
+ * endpoint : localhost:3000/userid/642068d6479bbab3172c3b64
+ * 
+ * o/p: 
+ * {
     "success": true,
-    "user": {}
+    "user": {
+        "_id": "642068d6479bbab3172c3b64",
+        "name": "Wick",
+        "email": "email@email.com",
+        "password": "1",
+        "__v": 0
+    }
 }
+ */
 
-*/
 app.listen(port, (err) => {
   if (err) {
     return console.log(`Error in running server ${err}`);
