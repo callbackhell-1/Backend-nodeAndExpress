@@ -61,33 +61,45 @@ app.post("/users/new", async (req, res) => {
   });
 });
 
-app.get("/userid", async (req, res) => {
-  const { id } = req.body;
-  const user = await User.findById(id);
+// param
+// /userid/node : here node is dynamic url
+// /userid/react here react is dynamic url
 
+app.get("/userid/:someRandom", async (req, res) => {
+  // const { id } = req.params;
+  // const user = await User.findById(id);
+  // console.log(id);
+  console.log(req.params);
+  /*
+  // Example 1: 
+  route: app.get("/userid/:id" ... 
+i have sent end point as : 
+-> localhost:3000/userid/node
+  -> console.log(req.params);
+   -> { id: 'node' }
+ 
+// Example 2 :
+ route: app.get("/userid/:someRandom" ...
+ i have sent end point as : 
+-> localhost:3000/userid/node
+  -> console.log(req.params);
+    ->{ someRandom: 'node' }
+*/
   res.json({
     success: true,
-    user,
+    user: {},
   });
 });
 
 /**
-//  1. using post method
- *If we send get req at url localhost:3000/userid
-
- and pass id as {
-    "id":"642068d6479bbab3172c3b64"
-}
-
-then we get infor of user with that pparticular id
-
-//2. USing query param
--> we can use this as query param also by: 
+-> we pass endpoint as :
 localhost:3000/userid?id=642068d6479bbab3172c3b64
- 
-const id =req.query.id;
-then we can use find the info of user using this id.
 
+we get response as :
+{
+    "success": true,
+    "user": {}
+}
 
 */
 app.listen(port, (err) => {
