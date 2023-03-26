@@ -2,6 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 
+const port = 3000;
+
+const app = express();
+
 // DB connection
 mongoose
   .connect("mongodb://localhost:27017", {
@@ -14,9 +18,15 @@ mongoose
     console.log("Not Connected to db", error);
   });
 
-const port = 3000;
+// creating Schema
+const schema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+});
 
-const app = express();
+// Model/collection creation
+const User = mongoose.model("User", schema);
 
 app.get("/", (req, res) => {
   res.send("<h1>Hi I'm Groot</h1>");
