@@ -55,7 +55,7 @@ app.post("/users/new", async (req, res) => {
     password,
   });
   // sending response
-  res.status(201).json({
+  res.status(201).cookie("ctoken", "tokenval").json({
     success: true,
     message: "Registered",
   });
