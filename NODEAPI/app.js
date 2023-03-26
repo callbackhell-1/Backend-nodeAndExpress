@@ -32,10 +32,14 @@ app.get("/", (req, res) => {
   res.send("<h1>Hi I'm Groot</h1>");
 });
 
-app.get("/users/all", (req, res) => {
+app.get("/users/all", async (req, res) => {
+  // find all user from db
+  const users = await User.find({});
+
   res.json({
     success: true,
-    user: [],
+    // users: users, or
+    users, //if key value same then pass only one
   });
 });
 
