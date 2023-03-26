@@ -11,13 +11,19 @@
     <main>
       <form action="/login" method="post">
         <h1>Login Now</h1>
-        <input type="email" name="email" placeholder="Email" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value="<%=locals.email%>"
+        />
         <input
           type="password"
           name="password"
           id="password"
           placeholder="Password"
         />
+        <p class="error"><%=locals.message%></p>
         <button type="submit">Login</button>
       </form>
     </main>

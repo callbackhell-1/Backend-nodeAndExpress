@@ -90,20 +90,19 @@ app.post("/login", async (req, res) => {
   console.log(email);
 
   if (!isMatch) {
-   return res.render("login", { message: "Incorrect Password" });
+    return res.render("login", {email, message: "Incorrect Password" });
   }
-    // creating token from jwt
-    const token = jwt.sign({ _id: user._id }, "iamsecretkey");
+  // creating token from jwt
+  const token = jwt.sign({ _id: user._id }, "iamsecretkey");
 
-    // cookie set
-    res.cookie("token", token, {
-      httpOnly: true,
-      expires: new Date(Date.now() + 60 * 1000),
-    });
+  // cookie set
+  res.cookie("token", token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + 60 * 1000),
+  });
 
-    res.redirect("/");
-  }
-);
+  res.redirect("/");
+});
 
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
@@ -151,7 +150,7 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- 2:46:45
+-- 
 --
 --  
 
