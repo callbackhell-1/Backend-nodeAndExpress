@@ -70,56 +70,6 @@ app.get("/userid/:id", async (req, res) => {
   });
 });
 
-/*
-Note : MAke sure dynamic route put at the end
-
-because: 
-
-app.get("/userid/:id", async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findById(id);
-  res.json({
-    success: true,
-    user,
-  });
-});
-
-app.get("/userid/special",(req,res)=>{
-  res.json({
-    success:true,
-    message:"Hola"
-  })
-})
-
--> in this case dynamic routing is above static routing
-so when we hit  endpoint : /userid/special
-
-then,
-app.get("/userid/:id....
-/special is considered as id , and it will try to find user based on that id and leads to error.
-
-
--> so its better to put dynamic route at the end 
-
-correct order:
-
-app.get("/userid/special",(req,res)=>{
-  res.json({
-    success:true,
-    message:"Hola"
-  })
-})
-
-app.get("/userid/:id", async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findById(id);
-  res.json({
-    success: true,
-    user,
-  });
-});
-
- */
 
 app.listen(port, (err) => {
   if (err) {
