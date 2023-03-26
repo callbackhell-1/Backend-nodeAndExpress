@@ -78,9 +78,6 @@ app.post("/login", async (req, res) => {
   }
 
   // if user found- chk password same or not
-  // const isMatch = user.password == req.body.password;
-  // As we have hashed password in db from (user.password)  we will get hashed password but  from (req.body.password) we will get normal password,so we have to convert (req.body.password) in hassh pasword
-
   // compare hash password
   const isMatch = await bcrypt.compare(password, user.password);
 
