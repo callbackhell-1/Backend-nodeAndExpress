@@ -65,6 +65,46 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+// login page
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  // finding user
+  const user = await User.findOne({ email });
+
+  // if user not found
+  if (!user) {
+    res.redirect("/register");
+  }
+
+  // if user found- chk password same or not
+  /* MY approach 
+  else if (user) {
+    user.password == req.body.password;
+    res.send("hola ");
+  }
+  */
+
+  const isMatch = user.password == req.body.password;
+  console.log(password);
+  console.log(user.password);
+  console.log(email);
+
+  if (!isMatch) {
+   return res.render("login", { message: "Incorrect Password" });
+  }
+    // creating token from jwt
+    const token = jwt.sign({ _id: user._id }, "iamsecretkey");
+
+    // cookie set
+    res.cookie("token", token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 60 * 1000),
+    });
+
+    res.redirect("/");
+  }
+);
+
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   console.log(req.body);
@@ -111,7 +151,7 @@ app.listen(3000, () => {
 /*  Note : */
 
 /* 
--- 2:33:35
+-- 2:46:45
 --
 --  
 
