@@ -3,6 +3,7 @@ import path from "path";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 // DB connection
 mongoose
@@ -90,7 +91,7 @@ app.post("/login", async (req, res) => {
   console.log(email);
 
   if (!isMatch) {
-    return res.render("login", {email, message: "Incorrect Password" });
+    return res.render("login", { email, message: "Incorrect Password" });
   }
   // creating token from jwt
   const token = jwt.sign({ _id: user._id }, "iamsecretkey");
