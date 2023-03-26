@@ -39,6 +39,20 @@ app.get("/users/all", async (req, res) => {
   // find all user from db
   const users = await User.find({});
 
+  /*----query param------*/
+  //1.  our url : localhost:3000/users/all/?city=Newyork
+  console.log(req.query);
+  // op: { city: 'Newyork' }
+
+  //2. our url: localhost:3000/users/all/?city=Newyork&country=US&continet=NA
+  console.log(req.query);
+  // o/p: { city: 'Newyork', country: 'US', continet: 'NA' }
+
+  // 3. use case
+  const country = req.query.country;
+  console.log(country);
+  // o/p: US
+
   res.json({
     success: true,
     users,
