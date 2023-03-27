@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import userRouter from "./routes/user.js";
 
 const port = 3000;
 
@@ -17,10 +18,9 @@ mongoose
     console.log("Not Connected to db", error);
   });
 
-
-
 // using Middleware
-app.use(express.json()); // as we are sending JSON so we use this
+app.use(express.json());
+app.use(userRouter);
 
 app.get("/", (req, res) => {
   res.send("<h1>Hi I'm Groot</h1>");

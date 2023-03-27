@@ -1,5 +1,5 @@
 import express from "express";
-import { User } from "..models/users.js";
+import { User } from "../models/users.js";
 
 const router = express.Router();
 
@@ -31,7 +31,7 @@ router.post("/users/new", async (req, res) => {
 });
 
 // Detail of user Based in ID
-app.get("/userid/:id", async (req, res) => {
+router.get("/userid/:id", async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
   res.json({
