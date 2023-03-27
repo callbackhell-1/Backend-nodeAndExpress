@@ -1,18 +1,11 @@
 import express from "express";
 import { User } from "../models/user.js";
+import {getAllUsers} from "../controllers/user.js";
 
 const router = express.Router();
 
 // Display all user
-router.get("/all", async (req, res) => {
-  // find all user from db
-  const users = await User.find({});
-
-  res.json({
-    success: true,
-    users,
-  });
-});
+router.get("/all", getAllUsers);
 
 // create new user
 router.post("/new", async (req, res) => {
