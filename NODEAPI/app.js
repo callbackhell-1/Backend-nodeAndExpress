@@ -1,26 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/user.js";
+// import db
+import {connectDB} from "./data/database.js";
 
 const port = 3000;
 
 const app = express();
 
-// DB connection
-mongoose
-  .connect("mongodb://localhost:27017", {
-    dbName: "BACKENDAPI",
-  })
-  .then(() => {
-    console.log("Connected to db");
-  })
-  .catch((error) => {
-    console.log("Not Connected to db", error);
-  });
+// connecting the db
+connectDB();
 
 // using Middleware
 app.use(express.json());
-app.use("/users",userRouter);
+app.use("/users", userRouter);
 
 app.get("/", (req, res) => {
   res.send("<h1>Hi I'm Groot</h1>");
@@ -35,6 +28,6 @@ app.listen(port, (err) => {
 
 /**
  *
- * 
- * 
+ *
+ *
  */
