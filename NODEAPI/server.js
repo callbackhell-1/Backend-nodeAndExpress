@@ -1,7 +1,10 @@
-import { app, port } from "./app.js";
+import { app } from "./app.js";
 import { connectDB } from "./data/database.js";
 
 connectDB();
+
+//console.log(process.env.PORT); //4000
+const port = process.env.PORT;
 
 app.listen(port, (err) => {
   if (err) {

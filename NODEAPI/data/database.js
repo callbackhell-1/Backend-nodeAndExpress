@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 
 // DB connection
 
+
 export const connectDB = () => {
   mongoose
-    .connect("mongodb://localhost:27017", {
+    .connect(process.env.MONGO_URI, {
       dbName: "BACKENDAPI",
     })
     .then(() => {
