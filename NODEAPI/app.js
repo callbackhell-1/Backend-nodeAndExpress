@@ -32,3 +32,9 @@ app.listen(port, (err) => {
   }
   console.log(`Server is up & running on ${port}`);
 });
+
+/**
+ * Now to access data
+ * endpoint : localhost:3000/users/all
+ * -> all user will show
+ */
