@@ -17,15 +17,7 @@ mongoose
     console.log("Not Connected to db", error);
   });
 
-// creating Schema
-const schema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-});
 
-// Model/collection creation
-const User = mongoose.model("User", schema);
 
 // using Middleware
 app.use(express.json()); // as we are sending JSON so we use this
