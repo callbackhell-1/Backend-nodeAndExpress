@@ -20,7 +20,7 @@ mongoose
 
 // using Middleware
 app.use(express.json());
-app.use(userRouter);
+app.use("/users",userRouter);
 
 app.get("/", (req, res) => {
   res.send("<h1>Hi I'm Groot</h1>");
@@ -34,7 +34,7 @@ app.listen(port, (err) => {
 });
 
 /**
- * Now to access data
- * endpoint : localhost:3000/users/all
- * -> all user will show
+ *
+ * 
+ * 
  */
