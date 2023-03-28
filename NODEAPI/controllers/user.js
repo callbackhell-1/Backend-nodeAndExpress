@@ -35,3 +35,16 @@ export const getUserDetails = async (req, res) => {
     user,
   });
 };
+
+// updateUserDetails logic.
+//deleteUserDetails logic
+export const deleteUserDetails = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  user.remove();
+
+  res.json({
+    success: true,
+    message:"user deleted"
+  });
+};
