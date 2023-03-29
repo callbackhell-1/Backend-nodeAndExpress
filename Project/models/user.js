@@ -3,8 +3,18 @@ import mongoose from "mongoose";
 // creating Schema
 const schema = new mongoose.Schema({
   name: String,
-  email: String,
-  password: String,
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: {
+    type: String,
+    select: false,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 // Model/collection creation
