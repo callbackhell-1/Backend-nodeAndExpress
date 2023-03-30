@@ -26,5 +26,5 @@ const schema = new mongoose.Schema({
   },
 });
 
-// Model/collection creation
+/* Model/collection creation */
 export const Task = mongoose.model("Task", schema);
