@@ -1,6 +1,5 @@
 import { User } from "../models/user.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { sendCookie } from "../utils/features.js";
 
 export const getAllUsers = async (req, res) => {};
@@ -10,7 +9,7 @@ export const register = async (req, res) => {
   const { name, email, password } = req.body;
 
   //   finding user
-  let user = await User.findOne({ email });
+  let user = await User.findOne({ email : email });
   if (user) {
     return res.status(404).json({
       success: false,
