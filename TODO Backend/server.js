@@ -4,7 +4,6 @@ import { connectDB } from "./data/database.js";
 connectDB();
 
 const port = process.env.PORT;
-console.log(process.env.PORT);
 
 app.listen(port, (err) => {
   if (err) {
