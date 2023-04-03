@@ -3,6 +3,7 @@ import {
   getAllUsers,
   register,
   login,
+  getMyProfile,
 } from "../controller/user.js";
 
 const router = express.Router();

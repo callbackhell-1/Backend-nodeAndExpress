@@ -58,5 +58,11 @@ export const register = async (req, res) => {
 
 // user details
 export const getMyProfile = async (req, res) => {
-    
+  const { token } = req.cookies;
+  console.log(token);
+
+  res.status(200).json({
+    success: true,
+    user: "Random",
+  });
 };

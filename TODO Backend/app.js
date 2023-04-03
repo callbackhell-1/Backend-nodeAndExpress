@@ -1,6 +1,7 @@
 import express from "express";
 import userRouter from "./routes/user.js";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 // export const port = 3000;
 
@@ -12,6 +13,9 @@ dotenv.config({
 
 // Middlewares
 app.use(express.json());
+app.use(cookieParser());
+
+// using routers
 app.use("/api/v1/users", userRouter);
 
 app.get("/", (req, res) => {
