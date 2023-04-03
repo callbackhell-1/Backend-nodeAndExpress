@@ -2,7 +2,6 @@ import express from "express";
 import {
   getAllUsers,
   register,
-  getUserDetails,
   login,
 } from "../controller/user.js";
 
@@ -17,7 +16,7 @@ router.post("/new", register);
 // login user
 router.post("/login", login);
 
-// Detail of user Based in ID
-router.get("/userid/:id", getUserDetails);
+// Profile of user
+router.get("/me", getMyProfile);
 
 export default router;
