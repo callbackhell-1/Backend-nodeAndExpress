@@ -6,6 +6,8 @@ import {
   getMyProfile,
 } from "../controller/user.js";
 
+import { isAuthenticated } from "../middlewares/auth.js";
+
 const router = express.Router();
 
 // Display all user
@@ -18,6 +20,6 @@ router.post("/new", register);
 router.post("/login", login);
 
 // Profile of user
-router.get("/me", getMyProfile);
+router.get("/me", isAuthenticated, getMyProfile);
 
 export default router;

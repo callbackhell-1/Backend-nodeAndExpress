@@ -59,26 +59,8 @@ export const register = async (req, res) => {
 
 // user details
 export const getMyProfile = async (req, res) => {
-  const { token } = req.cookies;
-  console.log(token);
-  /**
-   * if user is login then only ,he get token
-   */
-  if (!token) {
-    return res.status(404).json({
-      success: false,
-      message: "Login first",
-    });
-  }
-  // if we have token , we can fetch all the data
-  const decodedData = jwt.verify(token, process.env.JWT_SECRET);
-  console.log("Decoded data :", decodedData); //Decoded data : { _id: '642b4445b056c12905b01e66', iat: 1680641381 }
-
-  // find user
-  const user = await User.findById(decodedData._id);
-
   res.status(200).json({
     success: true,
-    user,
+    user: req.user,
   });
 };
