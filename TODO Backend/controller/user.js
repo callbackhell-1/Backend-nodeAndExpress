@@ -64,3 +64,15 @@ export const getMyProfile = async (req, res) => {
     user: req.user,
   });
 };
+
+// logout
+export const logout = (req, res) => {
+  // logout means destroying cookie
+  res
+    .status(200)
+    .cookie("token", "", { expires: new Date(Date.now()) })
+    .json({
+      success: true,
+      message: "Logout out successfully",
+    });
+};
