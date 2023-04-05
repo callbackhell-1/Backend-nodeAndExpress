@@ -10,4 +10,7 @@ router.post("/new", isAuthenticated, newTask);
 // get me/user task
 router.get("/my", isAuthenticated, getMyTask);
 
+// To update(completed or not) & delete
+router.route("/:id").put().delete();
+
 export default router;
