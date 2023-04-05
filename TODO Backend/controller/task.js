@@ -1,4 +1,4 @@
-import { Task } from "../models/task";
+import { Task } from "../models/task.js";
 
 export const newTask = async (req, res, next) => {
   const { title, description } = req.body;
@@ -7,5 +7,10 @@ export const newTask = async (req, res, next) => {
     title,
     description,
     user: req.user, //only logged in user can add task
+  });
+
+  res.status(201).json({
+    success: true,
+    message: "Task created !",
   });
 };
