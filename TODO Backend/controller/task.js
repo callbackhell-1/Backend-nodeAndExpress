@@ -25,7 +25,33 @@ export const getMyTask = async (req, res, next) => {
   const tasks = await Task.find({ user: userId });
 
   res.status(200).json({
-    success:true,
+    success: true,
     tasks, // array
-  })
+  });
+};
+
+// Update task
+
+export const updateTask = async (req, res, next) => {
+  const { id } = req.params;
+
+  // find task with that id
+  const task = await Task.findById({ id });
+
+  //update
+  task.isCompleted = !task.isCompleted; //making opposite , if true then false, vice-versa
+
+  await task.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Task Updated !",
+  });
+};
+
+// Delete task-- not completed
+export const deleteTask = async (req, res, next) => {
+  res.status(200).json({
+    success: true,
+  });
 };
