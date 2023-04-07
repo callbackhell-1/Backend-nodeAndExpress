@@ -26,14 +26,12 @@ app.get("/", (req, res) => {
 
 // error Handling
 app.use((err, req, res, next) => {
-  console.log(err);
-  /*
-Error: Nice
-    at deleteTask (file:///C:/Users/Epitome/Desktop/Backend-nodeAndExpress/TODO%20Backend/controller/task.js:67:17)
-  */
- console.log(err.message); //Nice
   return res.status(404).json({
     success: false,
-    message: "Invalid Id",
+    message: err.message,
   });
 });
+
+/**
+ * Now when we commit any error , error comes as "nice" (nice from controller)
+ */
