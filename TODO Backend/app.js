@@ -32,6 +32,3 @@ app.use((err, req, res, next) => {
   });
 });
 
-/**
- * Now when we commit any error , error comes as "nice" (nice from controller)
- */

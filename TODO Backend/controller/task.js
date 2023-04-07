@@ -40,10 +40,7 @@ export const updateTask = async (req, res, next) => {
 
   // if no task
   if (!task) {
-    return res.status(404).json({
-      success: false,
-      message: "Invalid Id",
-    });
+    return next(new Error("Invalid Id"));
   }
 
   //update
@@ -64,7 +61,7 @@ export const deleteTask = async (req, res, next) => {
 
   // if no task
   if (!task) {
-    return next(new Error("Nice"))
+    return next(new Error("Invalid Id"));
   }
 
   // removing task
