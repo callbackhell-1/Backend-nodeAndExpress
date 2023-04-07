@@ -3,6 +3,7 @@ import userRouter from "./routes/user.js";
 import taskRouter from "./routes/task.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import { errorMiddleware } from "./middlewares/error.js";
 
 // export const port = 3000;
 
@@ -24,11 +25,6 @@ app.get("/", (req, res) => {
   res.send("Hello from Project");
 });
 
-// error Handling
-app.use((err, req, res, next) => {
-  return res.status(404).json({
-    success: false,
-    message: err.message,
-  });
-});
+// error Handling,using error Middle ware
+app.use(errorMiddleware);
 
