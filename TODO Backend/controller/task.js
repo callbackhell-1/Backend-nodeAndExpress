@@ -61,7 +61,7 @@ export const deleteTask = async (req, res, next) => {
 
   // if no task
   if (!task) {
-    return next(new Error("Invalid Id"));
+    return next(new Error(""));
   }
 
   // removing task
@@ -72,3 +72,13 @@ export const deleteTask = async (req, res, next) => {
     message: "Task Deleted",
   });
 };
+
+/**
+ * Here we didn't give any message in Delete controller error
+ * 
+ * so we get o/ as 
+ * {
+    "success": false,
+    "message": "Internal Server Error"
+}
+ */
