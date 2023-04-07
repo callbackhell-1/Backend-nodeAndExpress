@@ -17,7 +17,7 @@ export const newTask = async (req, res, next) => {
 
 // my task
 export const getMyTask = async (req, res, next) => {
-  // TODO:  show task of user who logged in
+  //   show task of user who logged in
   // get user id
   const userId = req.user._id;
 
