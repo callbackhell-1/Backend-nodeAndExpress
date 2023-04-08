@@ -2,6 +2,7 @@ import { User } from "../models/user.js";
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import jwt from "jsonwebtoken";
+import ErrorHandler from "../middlewares/error.js";
 
 export const getAllUsers = async (req, res) => {};
 
@@ -12,21 +13,15 @@ export const login = async (req, res, next) => {
 
   // if user doesn't exist
   if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "Invalid Email/password",
-    });
+    return next(new ErrorHandler("Invalid Email/password", 400));
   }
 
   //   if user exist
   const isMatch = await bcrypt.compare(password, user.password);
-
   if (!isMatch) {
-    return res.status(404).json({
-      success: false,
-      message: "Password or email not matching",
-    });
+    return next(new ErrorHandler("Password or email not matching", 400));
   }
+
   sendCookie(user, res, `Welcome ${user.name}`, 200);
 };
 
@@ -36,12 +31,11 @@ export const register = async (req, res) => {
 
   //   finding user
   let user = await User.findOne({ email: email });
+
   if (user) {
-    return res.status(404).json({
-      success: false,
-      message: "user already exist",
-    });
+    return next(new ErrorHandler("user already exist", 400));
   }
+
   // hashing the password
   const hashedPassword = await bcrypt.hash(password, 10);
 

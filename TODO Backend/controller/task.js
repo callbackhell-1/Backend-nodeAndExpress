@@ -41,7 +41,7 @@ export const updateTask = async (req, res, next) => {
 
   // if no task
   if (!task) {
-    return next(new Error("Invalid Id"));
+    return next(new ErrorHandler("Invalid Id", 404));
   }
 
   //update
