@@ -1,3 +1,4 @@
+import ErrorHandler from "../middlewares/error.js";
 import { Task } from "../models/task.js";
 
 export const newTask = async (req, res, next) => {
@@ -61,7 +62,7 @@ export const deleteTask = async (req, res, next) => {
 
   // if no task
   if (!task) {
-    return next(new Error(""));
+    return next(new ErrorHandler("Invalid Id", 404));
   }
 
   // removing task
@@ -72,13 +73,3 @@ export const deleteTask = async (req, res, next) => {
     message: "Task Deleted",
   });
 };
-
-/**
- * Here we didn't give any message in Delete controller error
- * 
- * so we get o/ as 
- * {
-    "success": false,
-    "message": "Internal Server Error"
-}
- */
